@@ -1,0 +1,20 @@
+This document includes the list of the screens every individual contributed
+
+Salam Dawood:
+1) newslist
+2) menu
+3) winepage
+4) contact
+
+Shova Shrestha:
+1) feedback
+2) main menu
+3) salad page
+4) wine list
+
+
+Agjeliki Kaso:
+1) booking
+2) food menu
+3) salad list
+4) loading
