@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.john.debtmania.AmountOweActivity"
+    android:background="@drawable/mainbg">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Entry"
+        android:id="@+id/btEnter"
+        android:textSize="20dp"
+        android:layout_below="@+id/etAmount"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/texteditError"
+        android:layout_alignEnd="@+id/texteditError"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:alpha="1" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Error"
+        android:id="@+id/texteditError"
+        android:layout_below="@+id/btEnter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:textColor="#ffff0000" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/createtitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etName"
+        android:layout_weight="1"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical|center_horizontal"
+        android:hint="NAME"
+        android:autoText="false"
+        android:focusable="true"
+        android:enabled="true"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/editTextphnum"
+        android:layout_weight="1"
+        android:layout_below="@+id/etName"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/etName"
+        android:layout_alignStart="@+id/etName"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical|center_horizontal|clip_vertical"
+        android:layout_alignRight="@+id/etName"
+        android:layout_alignEnd="@+id/etName"
+        android:hint="PHONE - XXX-XXX-XXXX" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/etDescription"
+        android:layout_weight="1"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignRight="@+id/editTextphnum"
+        android:layout_alignEnd="@+id/editTextphnum"
+        android:layout_below="@+id/editTextphnum"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="DESCRIPTION" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:inputType="text|numberSigned"
+        android:ems="10"
+        android:id="@+id/etAmount"
+        android:layout_weight="1"
+        android:layout_below="@+id/etDescription"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/etDescription"
+        android:layout_alignStart="@+id/etDescription"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical|center_horizontal"
+        android:hint="AMOUNT (ENTER NEG. FOR DEBT)"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
