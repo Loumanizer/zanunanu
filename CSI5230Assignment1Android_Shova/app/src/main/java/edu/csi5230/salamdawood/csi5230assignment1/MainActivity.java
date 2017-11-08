@@ -1,12 +1,28 @@
 package edu.csi5230.salamdawood.csi5230assignment1;
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.provider.Telephony;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
+    IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+    public static final String EXTRA_PHONE_NUMBER = "PHONE_NUMBER";
+
+
+    int INVITE_REQUEST = 1;
 
     TextView turnLabel = null;
     Button startButton = null;
@@ -14,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
     Player[] players = new Player[2];
     Player currentPlayer = null;
     int currentTurn;
+    BroadcastReceiver br = null;
+
+    String RequestCode = "RequestCode";
+    String SelectCode = "SelectCode";
+    String AcceptCode = "AcceptCode";
+    String DeclineCode = "DeclineCode";
+    String SepCode = "::";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +60,51 @@ public class MainActivity extends AppCompatActivity {
         init();
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String phnumber = null;
+        if(requestCode == INVITE_REQUEST)
+            if(resultCode == Activity.RESULT_OK) {
+                phnumber = data.getStringExtra("EXTRA_PHONE_NUMBER");
+                // send request to 2nd player
+
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phnumber, null, RequestCode + SepCode + "FromUser1", null, null);
+                //wait for 2nd user response
+                turnLabel.setText(phnumber + " Waiting for Response");
+            }
+
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                    SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
+
+                    for (SmsMessage m: messages) {
+                        String number = m.getDisplayOriginatingAddress();
+                        String text = m.getDisplayMessageBody();
+                        StringTokenizer tokens = new StringTokenizer(text, "::");
+                        String firsttxt = tokens.nextToken();
+                        String secondtxt = tokens.nextToken();
+                            if (firsttxt.matches(RequestCode)){
+                                turnLabel.setText(number + " Waiting for Response");
+                            Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+
+                                Intent i = new Intent(context.getApplicationContext(), WaitResponse.class);
+                                startActivityForResult(i, INVITE_REQUEST);
+                        }
+                        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+                        //pNumber.setText(number);
+                        //mText.setText(text);
+                    }
+                }
+            }
+        };
+        registerReceiver(br, filter);
+
+    }
+
 
     void swapPlayer () {
 
@@ -88,9 +157,13 @@ public class MainActivity extends AppCompatActivity {
         }
         startButton.setText("Start Game");
         startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+
+             @Override
             public void onClick(View view) {
-                StartGame();
+                 Intent i = new Intent(view.getContext(), Invited_Request.class);
+                 startActivityForResult(i, INVITE_REQUEST);
+
+                     //StartGame();
             }
         });
     }

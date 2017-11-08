@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="molly.shrestha.edu.oakland.tictactoe.TicTacToe">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="141dp"
+        android:text="Tic-Tac-Toe"
+        android:textColor="#ff4672ff"
+        android:textColorHighlight="#ffff954e"
+        android:textColorHint="#ffa6ff9e"
+        android:textIsSelectable="false"
+        android:textSize="50.0dip"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btContinue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="194dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="48dp"
+        android:text="Continue"
+        android:textColor="#9fff1c06"
+        android:textSize="30.0dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="molly.shrestha.edu.oakland.tictactoe.TicTacToe">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+	<TextView android:textSize="50.0dip" android:textStyle="bold" android:textColor="#ff4672ff" android:textColorHighlight="#ffff954e" android:textColorHint="#ffa6ff9e" android:id="@id/textView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tic-Tac-Toe" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" android:textIsSelectable="false" />
+	
+	<Button android:textSize="30.0dip" android:textColor="#9fff1c06" android:id="@id/btContinue" android:background="@drawable/buttonxml" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Continue" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

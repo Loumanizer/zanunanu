@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+	<GridLayout
+		android:id="@id/buttonContainer"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_alignParentStart="true"
+		android:layout_below="@+id/textPlayer1Time"
+		android:layout_marginTop="21dp"
+		android:columnCount="3"
+		android:orientation="horizontal"
+		android:rowCount="3" />
+	<TextView android:textAppearance="?android:textAppearanceLarge" android:id="@+id/tvCurrentPlayer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Large Text" android:layout_toRightOf="@id/textViewStatus" android:layout_alignParentRight="true" android:layout_toEndOf="@id/textViewStatus" android:layout_alignParentEnd="true" />
+
+	<TextView
+		android:id="@+id/tvGamestatus"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/tvCurrentPlayer"
+		android:layout_toEndOf="@+id/textViewStatus"
+		android:text="Keep Playing"
+		android:textAppearance="?android:textAppearanceLarge"
+		android:textSize="20.0dip" />
+	<TextView android:textAppearance="?android:textAppearanceLarge" android:id="@id/textViewStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Turn: " android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+	<TextView android:textAppearance="?android:textAppearanceLarge" android:id="@+id/textPlayer1Time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Large Text" android:layout_below="@id/tvGamestatus" android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:layout_alignParentStart="true" android:layout_alignParentEnd="true" />
+</RelativeLayout>
