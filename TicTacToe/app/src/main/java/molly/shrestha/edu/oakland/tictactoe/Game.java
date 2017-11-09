@@ -1,5 +1,6 @@
 package molly.shrestha.edu.oakland.tictactoe;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -36,8 +37,6 @@ public class Game extends AppCompatActivity {
     public int totalbox = 9;
     int[] playerinput = new int[totalbox];
     public Convert tablelocConvert = new Convert();
-    TextView textPlayer1Time = null;
-    TextView textPlayer2Time = null;
 
     TextView tv = null;
     TextView tvCurrentPlayer = null;
@@ -53,20 +52,20 @@ public class Game extends AppCompatActivity {
             int i = Game.Player1;
             TTTButton b = (TTTButton) v;
             b.setTag(Integer.valueOf(Game.this.currentPlayer));
-            //Game.this.enablecells(false);
-            game.getPlayer(Game.this.currentPlayer).MarkCell(b.index);
-            tablelocConvert.getXYvalue(b.index);
-            String msg = "0978 : Tic-Tac-Toe : SELECTED : " + Game.this.tablelocConvert.toSting();
-            Game_CURRENT_STATUS = Game.Game_STATUS_MOVE_WAITING;
-            //CheckWiner();
+            Game.this.enablecells(false);
+            Game.this.game.getPlayer(Game.this.currentPlayer).MarkCell(b.index);
+            Game.this.tablelocConvert.getXYvalue(b.index);
+            String msg = "0978 : Tic-Tac-Toe : SELECTED : " + tablelocConvert.toSting();
+            Game_CURRENT_STATUS = Game_STATUS_MOVE_WAITING;
+            CheckWiner();
             tvGameStatus.setText("Move Send");
             Game game = Game.this;
-            if (currentPlayer == 0) {
-                i = Player2;
+            if (Game.this.currentPlayer == 0) {
+                i = Game.Player2;
             }
-            currentPlayer = i;
-            tvCurrentPlayer.setText(Game.this.game.getPlayer(currentPlayer).name);
-            //SmsManager.getDefault().sendTextMessage(Game.this.game.getPlayer(currentPlayer).phonenumber, null, msg, null, null);
+            game.currentPlayer = i;
+            Game.this.tvCurrentPlayer.setText(Game.this.game.getPlayer(Game.this.currentPlayer).name);
+            SmsManager.getDefault().sendTextMessage(Game.this.game.getPlayer(Game.this.currentPlayer).phonenumber, null, msg, null, null);
         }
     }
 
@@ -89,7 +88,7 @@ public class Game extends AppCompatActivity {
         for (int i = 0; i < totalbox; i += 1) {
             TTTButton b = new TTTButton(this);
             b.setIndex(i);
-            b.setTag(Integer.valueOf(-1));
+            b.setTag(-1);
             b.setOnClickListener(h);
             this.game.getPlayer(Player1).register(b, i);
             this.game.getPlayer(Player2).register(b, i);
@@ -115,18 +114,17 @@ public class Game extends AppCompatActivity {
         });
         if (this.game.getPlayer(Player1).firstplayer == Player2) {
             this.currentPlayer = Player1;
-            //enablecells(true);
+            enablecells(true);
 
         } else {
             this.currentPlayer = Player2;
-            //enablecells(false);
+            enablecells(false);
         }
         this.tvCurrentPlayer.setText(this.game.getPlayer(this.currentPlayer).name);
     }
 
     public void UpdateGameTable(String phonenumber, String msgString) {
         String[] words = msgString.split(" : ");
-        String _phonenumber = phonenumber;
         if (words[Game_STATUS_RECEIVED].equals("TERMINATED")) {
             AlertDialog adDraw = new Builder(this).create();
             adDraw.setCancelable(false);
@@ -137,23 +135,16 @@ public class Game extends AppCompatActivity {
                     Intent intent = new Intent(Game.this.getBaseContext(), MainScreen.class);
                     Game.this.gamereceiver.setFlag(Game.Player1);
                     Game.this.startActivity(intent);
-                    //intent.setFlags(131072);
-                    //Game.this.startActivity(intent);
-                    //Game.this.finish();
-                    //dialog.dismiss();
                 }
             });
             adDraw.show();
         } else if (Game_CURRENT_STATUS == Game_STATUS_MOVE_WAITING) {
             Game_CURRENT_STATUS = Game_STATUS_MOVE_WAITING;
-            updatetable(this.tablelocConvert.singleValue(words[Game_STATUS_ACEPTED]), Player1);
+            //updatetable(tablelocConvert.singleValue(words[Game_STATUS_ACEPTED]), Player1);
+            updatetable(tablelocConvert.singleValue(words[3]),0);
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.game, menu);
-        return true;
-    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -169,11 +160,11 @@ public class Game extends AppCompatActivity {
     }
 
     public void enablecells(boolean cond) {
-        for (int i = Player1; i < this.totalbox; i += Player2) {
+        for (int i = 0; i < totalbox; i += 1) {
             if (this.buttons[i].getTag().toString().equals("-1")) {
-                this.buttons[i].setEnabled(cond);
+                buttons[i].setEnabled(cond);
             } else {
-                this.buttons[i].setEnabled(false);
+                buttons[i].setEnabled(false);
             }
         }
     }
@@ -183,8 +174,8 @@ public class Game extends AppCompatActivity {
         this.buttons[xlocation].setEnabled(false);
         this.buttons[xlocation].setTag(Integer.valueOf(this.currentPlayer));
         this.game.getPlayer(this.currentPlayer).MarkCell(this.buttons[xlocation].index);
-        //enablecells(true);
-        this.tvGameStatus.setText("Move Recerived");
+        Game.this.enablecells(true);
+        tvGameStatus.setText("Move Recerived");
         CheckWiner();
         if (this.currentPlayer != 0) {
             i = Player1;
@@ -199,20 +190,21 @@ public class Game extends AppCompatActivity {
         int cp = currentPlayer;
         for (i = 0; i < totalbox; i += 1) {
 
-            //playerinput[i] = ((Integer) this.buttons[i].getTag()).intValue();
+            playerinput[i] = ((Integer) this.buttons[i].getTag()).intValue();
            // playerinput[i] = ((Integer)buttons[i].getTag()).intValue();
         }
 
 
 
-        if ((this.playerinput[Player1] == cp &&
-                this.playerinput[Player2] == cp &&
-                this.playerinput[Game_STATUS_RECEIVED] == cp &&
-                this.playerinput[Game_STATUS_ACEPTED] == cp) ||
-                ((this.playerinput[Game_STATUS_DECLIED] == cp &&
-                this.playerinput[Game_STATUS_PlAYER1] == cp &&
-                 this.playerinput[Game_STATUS_TERMINATED] == cp &&
-                  this.playerinput[Game_STATUS_REQUEST_WAITING] == cp) || ((this.playerinput[Game_STATUS_PlAYER2] == cp && this.playerinput[Game_STATUS_MOVE_WAITING] == cp && this.playerinput[10] == cp && this.playerinput[11] == cp) || ((this.playerinput[12] == cp && this.playerinput[13] == cp && this.playerinput[14] == cp && this.playerinput[15] == cp) || ((this.playerinput[Player1] == cp && this.playerinput[Game_STATUS_DECLIED] == cp && this.playerinput[Game_STATUS_PlAYER2] == cp && this.playerinput[12] == cp) || ((this.playerinput[Player2] == cp && this.playerinput[Game_STATUS_PlAYER1] == cp && this.playerinput[Game_STATUS_MOVE_WAITING] == cp && this.playerinput[13] == cp) || ((this.playerinput[Game_STATUS_RECEIVED] == cp && this.playerinput[Game_STATUS_TERMINATED] == cp && this.playerinput[10] == cp && this.playerinput[14] == cp) || ((this.playerinput[Game_STATUS_ACEPTED] == cp && this.playerinput[Game_STATUS_REQUEST_WAITING] == cp && this.playerinput[11] == cp && this.playerinput[15] == cp) || ((this.playerinput[Player1] == cp && this.playerinput[Game_STATUS_PlAYER1] == cp && this.playerinput[10] == cp && this.playerinput[15] == cp) || (this.playerinput[Game_STATUS_ACEPTED] == cp && this.playerinput[Game_STATUS_TERMINATED] == cp && this.playerinput[Game_STATUS_MOVE_WAITING] == cp && this.playerinput[12] == cp)))))))))) {
+        if ((playerinput[0] == cp && playerinput[1] == cp && playerinput[2] == cp) ||
+                (playerinput[3] == cp && playerinput[4] == cp && playerinput[5] == cp) ||
+                (playerinput[6] == cp && playerinput[7] == cp && playerinput[8] == cp) ||
+                (playerinput[0] == cp && playerinput[3] == cp && playerinput[6] == cp) ||
+                (playerinput[1] == cp && playerinput[4] == cp && playerinput[7] == cp) ||
+                (playerinput[2] == cp && playerinput[5] == cp && playerinput[8] == cp) ||
+                (playerinput[0] == cp && playerinput[4] == cp && playerinput[8] == cp) ||
+                (playerinput[2] == cp && playerinput[4] == cp && playerinput[6] == cp) )
+        {
             Playername = this.game.getPlayer(this.currentPlayer).name;
             this.tvGameStatus.setText(Playername + " : winner");
             AlertDialog ad = new Builder(this).create();
@@ -235,7 +227,9 @@ public class Game extends AppCompatActivity {
                 this.buttons[i].setEnabled(false);
             }
         }
-        if ((((((((((((((((this.playerinput[Player1] | this.playerinput[Player2]) | this.playerinput[Game_STATUS_RECEIVED]) | this.playerinput[Game_STATUS_ACEPTED]) | this.playerinput[Game_STATUS_DECLIED]) | this.playerinput[Game_STATUS_PlAYER1]) | this.playerinput[Game_STATUS_TERMINATED]) | this.playerinput[Game_STATUS_REQUEST_WAITING]) | this.playerinput[Game_STATUS_PlAYER2]) | this.playerinput[Game_STATUS_MOVE_WAITING]) | this.playerinput[10]) | this.playerinput[11]) | this.playerinput[12]) | this.playerinput[13]) | this.playerinput[14]) | this.playerinput[15]) != -1) {
+        if (((((((((((playerinput[0] | this.playerinput[1]) |
+                playerinput[2]) | playerinput[3]) | playerinput[4]) | playerinput[5]) |
+                playerinput[6]) | playerinput[7]) | playerinput[8]) ) != -1)) {
             this.tvGameStatus.setText("Game Draw");
             AlertDialog adDraw = new Builder(this).create();
             adDraw.setCancelable(false);

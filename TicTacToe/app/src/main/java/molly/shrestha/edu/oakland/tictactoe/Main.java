@@ -67,7 +67,7 @@ public class Main extends AppCompatActivity {
                     return;
                 }
                 Intent i = new Intent(v.getContext(), MainScreen.class);
-                i.setFlags(131072);
+                //i.setFlags(131072);
                 v.getContext().startActivity(i);
             }
         });

@@ -14,7 +14,7 @@ public class SMSGameReceiver extends BroadcastReceiver {
     Game game = null;
 
     SMSGameReceiver(Game _game) {
-        this.game = _game;
+        game = _game;
     }
 
     void setFlag(int _flag) {
@@ -32,7 +32,7 @@ public class SMSGameReceiver extends BroadcastReceiver {
                     String message = currentMessage.getDisplayMessageBody();
                     Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
                     if (message.split(" : ")[0].equals("0978")) {
-                        this.game.UpdateGameTable(senderNum, message);
+                        game.UpdateGameTable(senderNum, message);
                     }
                 }
             } catch (Exception e) {

@@ -23,8 +23,8 @@ public class TicTacToe extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.textView);
         btCont.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                //Intent i = new Intent(v.getContext(), Main.class);
-                Intent i = new Intent(v.getContext(), Game.class);
+                Intent i = new Intent(v.getContext(), Main.class);
+                //Intent i = new Intent(v.getContext(), Game.class);
                 //i.setFlags(131072);
                 v.getContext().startActivity(i);
             }
