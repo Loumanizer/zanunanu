@@ -19,8 +19,6 @@ import android.widget.GridLayout.LayoutParams;
 import android.widget.TextView;
 
 public class Game extends AppCompatActivity {
-    public static  final String gmekey = "$!!#**##";
-    public static final String Sigkey = "$!!#**## : Tic-Tac-Toe : ";
     public static int Game_CURRENT_STATUS = -1;
     public static final int Game_STATUS_MOVE_WAITING = 9;
     public static final int Game_STATUS_RECEIVED = 2;
@@ -51,7 +49,7 @@ public class Game extends AppCompatActivity {
             Game.this.enablecells(false);
             Game.this.game.getPlayer(Game.this.currentPlayer).MarkCell(b.index);
             Game.this.tablelocConvert.getXYvalue(b.index);
-            String msg = "0978 : Tic-Tac-Toe : SELECTED : " + tablelocConvert.toSting();
+            String msg = "%$$^ : Tic-Tac-Toe : SELECTED : " + tablelocConvert.toSting();
             Game_CURRENT_STATUS = Game_STATUS_MOVE_WAITING;
             CheckWiner();
             tvGameStatus.setText("Move Send");
@@ -101,8 +99,8 @@ public class Game extends AppCompatActivity {
                     params.leftMargin = 5;
                     params.topMargin = 5;
                     params.bottomMargin = 5;
-                    params.width = ((bContainerWidth / 4) - params.rightMargin) - params.leftMargin;
-                    params.height = ((bContainerHeight / 4) - params.topMargin) - params.bottomMargin;
+                    params.width = ((bContainerWidth / 3) - params.rightMargin) - params.leftMargin;
+                    params.height = ((bContainerHeight / 3) - params.topMargin) - params.bottomMargin;
                     Game.this.buttons[i].setLayoutParams(params);
                 }
                 ViewTreeObserver vto = Game.this.buttonContainer.getViewTreeObserver();
@@ -148,7 +146,7 @@ public class Game extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        SmsManager.getDefault().sendTextMessage(this.game.getPlayer(Player2).phonenumber.toString(), null, "0978 : Tic-Tac-Toe : TERMINATED", null, null);
+        SmsManager.getDefault().sendTextMessage(this.game.getPlayer(Player2).phonenumber.toString(), null, "%$$^ : Tic-Tac-Toe : TERMINATED", null, null);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -211,10 +209,6 @@ public class Game extends AppCompatActivity {
                     Intent intent = new Intent(Game.this.getBaseContext(), MainScreen.class);
                     Game.this.gamereceiver.setFlag(Game.Player1);
                     Game.this.startActivity(intent);
-                    //intent.setFlags(131072);
-                    //Game.this.startActivity(intent);
-                    //Game.this.finish();
-                    //dialog.dismiss();
                 }
             });
             ad.show();
@@ -226,18 +220,22 @@ public class Game extends AppCompatActivity {
                 playerinput[2]) | playerinput[3]) | playerinput[4]) | playerinput[5]) |
                 playerinput[6]) | playerinput[7]) | playerinput[8]) ) != -1)) {
             this.tvGameStatus.setText("Game Draw");
-            AlertDialog adDraw = new Builder(this).create();
-            adDraw.setCancelable(false);
-            adDraw.setMessage("Game Draw");
-            adDraw.setButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    Game.this.game.getPlayer(Game.this.currentPlayer).firstplayer = Game.Player1;
-                    Intent intent = new Intent(Game.this.getBaseContext(), MainScreen.class);
-                    Game.this.gamereceiver.setFlag(Game.Player1);
-                    Game.this.startActivity(intent);
-                }
-            });
-            adDraw.show();
+
+
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setCancelable(false);
+            alertDialog.setTitle("Game Draw");
+            alertDialog.setMessage("Please send invitation for next Game");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Game.this.game.getPlayer(Game.this.currentPlayer).firstplayer = Game.Player1;
+                            Intent intent = new Intent(Game.this.getBaseContext(), MainScreen.class);
+                            Game.this.gamereceiver.setFlag(Game.Player1);
+                            Game.this.startActivity(intent);
+                        }
+                    });
+            alertDialog.show();
         }
     }
 }

@@ -1,19 +1,16 @@
 package molly.shrestha.edu.oakland.tictactoe;
 
 import android.support.v7.app.AppCompatActivity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Main extends AppCompatActivity {
     ImageButton[] b = new ImageButton[6];
@@ -54,20 +51,12 @@ public class Main extends AppCompatActivity {
                 Main.this.player.name = name;
                 Main.this.player.phonenumber = null;
                 Main.this.player.firstplayer = 0;
-                if (name.equals(BuildConfig.FLAVOR)) {
-                    AlertDialog adDraw = new Builder(v.getContext()).create();
-                    adDraw.setCancelable(false);
-                    adDraw.setMessage("Please Enter you Name");
-                    adDraw.setButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    adDraw.show();
+                if (name.matches("")) {
+                    Toast.makeText(getApplicationContext(), "Please Enter Player Name", Toast.LENGTH_LONG).show();
                     return;
                 }
+
                 Intent i = new Intent(v.getContext(), MainScreen.class);
-                //i.setFlags(131072);
                 v.getContext().startActivity(i);
             }
         });

@@ -16,19 +16,17 @@
             android:id="@+id/txtUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User Name"
+            android:text="Player Turn"
             tools:layout_editor_absoluteX="26dp"
             tools:layout_editor_absoluteY="16dp" />
 
-        <EditText
-            android:id="@+id/editTextUserName"
+        <TextView
+            android:id="@+id/tvCurrentPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:layout_weight="1"
+            android:text="TextView" />
+
     </LinearLayout>
 
     <TextView

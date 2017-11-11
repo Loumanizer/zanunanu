@@ -1,4 +1,4 @@
-package molly.shrestha.edu.oakland.tictactoe;
+package edu.csi5230.sshresth.tictactoe;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,9 +11,9 @@ import android.util.Log;
 public class SMSGameReceiver extends BroadcastReceiver {
     static IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
     int flag = 0;
-    Game game = null;
+    GameScreen game = null;
 
-    SMSGameReceiver(Game _game) {
+    SMSGameReceiver(GameScreen _game) {
         game = _game;
     }
 
@@ -31,7 +31,7 @@ public class SMSGameReceiver extends BroadcastReceiver {
                     String senderNum = currentMessage.getDisplayOriginatingAddress();
                     String message = currentMessage.getDisplayMessageBody();
                     Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
-                    if (message.split(" : ")[0].equals("%$$^")) {
+                    if (message.split(" : ")[0].equals("0978")) {
                         game.UpdateGameTable(message);
                     }
                 }

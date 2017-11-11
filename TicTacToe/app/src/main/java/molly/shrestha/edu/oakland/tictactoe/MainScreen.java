@@ -2,7 +2,6 @@ package molly.shrestha.edu.oakland.tictactoe;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -10,12 +9,11 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainScreen extends AppCompatActivity {
 
@@ -40,12 +38,12 @@ public class MainScreen extends AppCompatActivity {
             switch (which) {
                 case -2:
                     MainScreen.Game_CURRENT_STATUS = MainScreen.Game_STATUS_REQUEST_WAITING;
-                    sendmsg = "0978 : Tic-Tac-Toe : DENIED : " + MainScreen.this.game.getPlayer(0).name;
+                    sendmsg = "%$$^ : Tic-Tac-Toe : DENIED : " + MainScreen.this.game.getPlayer(0).name;
                     break;
                 case -1:
                     MainScreen.Game_CURRENT_STATUS = MainScreen.Game_STATUS_MOVE_WAITING;
                     MainScreen.this.receriver.setFlag(MainScreen.Game_STATUS_SEND);
-                    sendmsg = "0978 : Tic-Tac-Toe : ACCEPTED : " + MainScreen.this.game.getPlayer(0).name;
+                    sendmsg = "%$$^ : Tic-Tac-Toe : ACCEPTED : " + MainScreen.this.game.getPlayer(0).name;
                     Intent intent = new Intent(((Dialog) dialog).getContext(), Game.class);
                     MainScreen.this.startActivity(intent);
                     break;
@@ -75,22 +73,15 @@ public class MainScreen extends AppCompatActivity {
         this.btInvitegame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String phnumber = MainScreen.this.editPhonenumber.getText().toString();
-                if (phnumber.equals(BuildConfig.FLAVOR)) {
-                    AlertDialog adDraw = new Builder(view.getContext()).create();
-                    adDraw.setCancelable(false);
-                    adDraw.setMessage("Please Enter Phone Number");
-                    adDraw.setButton("OK", new OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    adDraw.show();
+
+                if (phnumber.matches("")) {
+                    Toast.makeText(getApplicationContext(), "Please Enter Phone Number", Toast.LENGTH_LONG).show();
                     return;
                 }
                 MainScreen.Game_CURRENT_STATUS = MainScreen.Game_STATUS_SEND;
                 MainScreen.this.textGameStatus.setText("Wait for Game Request");
                 MainScreen.this.game.getPlayer(MainScreen.Game_STATUS_SEND).phonenumber = phnumber;
-                SmsManager.getDefault().sendTextMessage(phnumber, null, "0978 : GameName : Tic-Tac-Toe : INVITE : " + MainScreen.this.game.getPlayer(0).name.toString(), null, null);
+                SmsManager.getDefault().sendTextMessage(phnumber, null, "%$$^ : GameName : Tic-Tac-Toe : INVITE : " + MainScreen.this.game.getPlayer(0).name.toString(), null, null);
             }
         });
         this.btSetting.setOnClickListener(new View.OnClickListener() {

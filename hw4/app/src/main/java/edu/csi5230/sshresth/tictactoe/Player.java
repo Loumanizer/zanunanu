@@ -1,4 +1,4 @@
-package molly.shrestha.edu.oakland.tictactoe;
+package edu.csi5230.sshresth.tictactoe;
 
 public class Player {
     DataCell[] cells = new DataCell[16];
