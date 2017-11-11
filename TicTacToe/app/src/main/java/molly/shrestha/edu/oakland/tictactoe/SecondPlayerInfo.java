@@ -63,18 +63,6 @@ public class SecondPlayerInfo extends AppCompatActivity {
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.secon_player_info, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //if (item.getItemId() == R.id.action_settings) {
-         //   return true;
-        //}
-        return super.onOptionsItemSelected(item);
-    }
-
     protected void onResume() {
         super.onResume();
         if (this.player.name != null) {

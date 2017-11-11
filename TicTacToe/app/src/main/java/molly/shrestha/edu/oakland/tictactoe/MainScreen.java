@@ -48,8 +48,6 @@ public class MainScreen extends AppCompatActivity {
                     sendmsg = "0978 : Tic-Tac-Toe : ACCEPTED : " + MainScreen.this.game.getPlayer(0).name;
                     Intent intent = new Intent(((Dialog) dialog).getContext(), Game.class);
                     MainScreen.this.startActivity(intent);
-                    intent.setFlags(131072);
-                    MainScreen.this.startActivity(intent);
                     break;
             }
             SmsManager.getDefault().sendTextMessage(MainScreen.this.game.getPlayer(0).phonenumber, null, sendmsg, null, null);
@@ -98,22 +96,9 @@ public class MainScreen extends AppCompatActivity {
         this.btSetting.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), Main.class);
-                //i.setFlags(131072);
                 view.getContext().startActivity(i);
             }
         });
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.main_screen, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //if (item.getItemId() == R.id.action_settings) {
-        //    return true;
-        //}
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressLint("WrongConstant")
@@ -127,10 +112,7 @@ public class MainScreen extends AppCompatActivity {
                 this.game.getPlayer(Game_STATUS_SEND).phonenumber = senderNum;
                 this.game.getPlayer(Game_STATUS_SEND).name = words[Game_STATUS_ACEPTED];
                 this.game.getPlayer(0).firstplayer = Game_STATUS_SEND;
-                //Intent i = new Intent(this)
                 Intent i = new Intent(this, Game.class);
-                //startActivity(i);
-                i.setFlags(131072);
                 startActivity(i);
             } else if (words[Game_STATUS_RECEIVED].equals("DENIED")) {
                 Game_CURRENT_STATUS = Game_STATUS_REQUEST_WAITING;

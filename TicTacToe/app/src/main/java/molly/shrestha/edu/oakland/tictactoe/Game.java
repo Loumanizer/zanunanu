@@ -19,15 +19,11 @@ import android.widget.GridLayout.LayoutParams;
 import android.widget.TextView;
 
 public class Game extends AppCompatActivity {
+    public static  final String gmekey = "$!!#**##";
+    public static final String Sigkey = "$!!#**## : Tic-Tac-Toe : ";
     public static int Game_CURRENT_STATUS = -1;
-    public static final int Game_STATUS_ACEPTED = 3;
-    public static final int Game_STATUS_DECLIED = 4;
     public static final int Game_STATUS_MOVE_WAITING = 9;
-    public static final int Game_STATUS_PlAYER1 = 5;
-    public static final int Game_STATUS_PlAYER2 = 8;
     public static final int Game_STATUS_RECEIVED = 2;
-    public static final int Game_STATUS_REQUEST_WAITING = 7;
-    public static final int Game_STATUS_TERMINATED = 6;
     public static final int Player1 = 0;
     public static final int Player2 = 1;
     GridLayout buttonContainer = null;
@@ -101,12 +97,12 @@ public class Game extends AppCompatActivity {
                 int bContainerHeight = Game.this.buttonContainer.getHeight();
                 for (int i = Game.Player1; i < Game.this.totalbox; i += Game.Player2) {
                     LayoutParams params = (LayoutParams) Game.this.buttons[i].getLayoutParams();
-                    params.rightMargin = Game.Game_STATUS_PlAYER1;
-                    params.leftMargin = Game.Game_STATUS_PlAYER1;
-                    params.topMargin = Game.Game_STATUS_PlAYER1;
-                    params.bottomMargin = Game.Game_STATUS_PlAYER1;
-                    params.width = ((bContainerWidth / Game.Game_STATUS_DECLIED) - params.rightMargin) - params.leftMargin;
-                    params.height = ((bContainerHeight / Game.Game_STATUS_DECLIED) - params.topMargin) - params.bottomMargin;
+                    params.rightMargin = 5;
+                    params.leftMargin = 5;
+                    params.topMargin = 5;
+                    params.bottomMargin = 5;
+                    params.width = ((bContainerWidth / 4) - params.rightMargin) - params.leftMargin;
+                    params.height = ((bContainerHeight / 4) - params.topMargin) - params.bottomMargin;
                     Game.this.buttons[i].setLayoutParams(params);
                 }
                 ViewTreeObserver vto = Game.this.buttonContainer.getViewTreeObserver();
@@ -123,7 +119,7 @@ public class Game extends AppCompatActivity {
         this.tvCurrentPlayer.setText(this.game.getPlayer(this.currentPlayer).name);
     }
 
-    public void UpdateGameTable(String phonenumber, String msgString) {
+    public void UpdateGameTable(String msgString) {
         String[] words = msgString.split(" : ");
         if (words[Game_STATUS_RECEIVED].equals("TERMINATED")) {
             AlertDialog adDraw = new Builder(this).create();
@@ -140,8 +136,7 @@ public class Game extends AppCompatActivity {
             adDraw.show();
         } else if (Game_CURRENT_STATUS == Game_STATUS_MOVE_WAITING) {
             Game_CURRENT_STATUS = Game_STATUS_MOVE_WAITING;
-            //updatetable(tablelocConvert.singleValue(words[Game_STATUS_ACEPTED]), Player1);
-            updatetable(tablelocConvert.singleValue(words[3]),0);
+            updatetable(tablelocConvert.singleValue(words[3]));
         }
     }
 
@@ -169,7 +164,7 @@ public class Game extends AppCompatActivity {
         }
     }
 
-    public void updatetable(int xlocation, int ylocation) {
+    public void updatetable(int xlocation) {
         int i = Player2;
         this.buttons[xlocation].setEnabled(false);
         this.buttons[xlocation].setTag(Integer.valueOf(this.currentPlayer));
@@ -191,7 +186,7 @@ public class Game extends AppCompatActivity {
         for (i = 0; i < totalbox; i += 1) {
 
             playerinput[i] = ((Integer) this.buttons[i].getTag()).intValue();
-           // playerinput[i] = ((Integer)buttons[i].getTag()).intValue();
+
         }
 
 
@@ -240,10 +235,6 @@ public class Game extends AppCompatActivity {
                     Intent intent = new Intent(Game.this.getBaseContext(), MainScreen.class);
                     Game.this.gamereceiver.setFlag(Game.Player1);
                     Game.this.startActivity(intent);
-                    //intent.setFlags(131072);
-                    //Game.this.startActivity(intent);
-                    //Game.this.finish();
-                    //dialog.dismiss();
                 }
             });
             adDraw.show();

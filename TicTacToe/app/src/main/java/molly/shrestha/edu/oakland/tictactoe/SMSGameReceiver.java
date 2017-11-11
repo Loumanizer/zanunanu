@@ -32,7 +32,7 @@ public class SMSGameReceiver extends BroadcastReceiver {
                     String message = currentMessage.getDisplayMessageBody();
                     Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
                     if (message.split(" : ")[0].equals("0978")) {
-                        game.UpdateGameTable(senderNum, message);
+                        game.UpdateGameTable(message);
                     }
                 }
             } catch (Exception e) {

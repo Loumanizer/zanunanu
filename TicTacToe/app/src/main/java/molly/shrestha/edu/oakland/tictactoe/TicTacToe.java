@@ -31,15 +31,4 @@ public class TicTacToe extends AppCompatActivity {
         });
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-       // getMenuInflater().inflate(R.menu.tic_tac_toe, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //if (item.getItemId() == R.id.action_settings) {
-        //    return true;
-        //}
-        return super.onOptionsItemSelected(item);
-    }
 }
