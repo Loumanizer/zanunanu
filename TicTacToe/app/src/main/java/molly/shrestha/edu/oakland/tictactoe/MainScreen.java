@@ -20,15 +20,10 @@ public class MainScreen extends AppCompatActivity {
     public static int Game_CURRENT_STATUS = -1;
     public static final int Game_STATUS_ACEPTED = 3;
     public static final int Game_STATUS_DECLIED = 4;
-    public static final int Game_STATUS_MOVE_SEND = 9;
     public static final int Game_STATUS_MOVE_WAITING = 9;
-    public static final int Game_STATUS_PlAYER1 = 5;
-    public static final int Game_STATUS_PlAYER2 = 8;
     public static final int Game_STATUS_RECEIVED = 2;
     public static final int Game_STATUS_REQUEST_WAITING = 7;
     public static final int Game_STATUS_SEND = 1;
-    public static final int Game_STATUS_TERMINATED = 6;
-    int INTENT_FLAG = 131072;
     Button btInvitegame = null;
     Button btSetting = null;
     OnClickListener dialogClickListener = new OnClickListener() {
@@ -38,12 +33,12 @@ public class MainScreen extends AppCompatActivity {
             switch (which) {
                 case -2:
                     MainScreen.Game_CURRENT_STATUS = MainScreen.Game_STATUS_REQUEST_WAITING;
-                    sendmsg = "%$$^ : Tic-Tac-Toe : DENIED : " + MainScreen.this.game.getPlayer(0).name;
+                    sendmsg = TicTacToe.appkey + " : Tic-Tac-Toe : DENIED : " + MainScreen.this.game.getPlayer(0).name;
                     break;
                 case -1:
                     MainScreen.Game_CURRENT_STATUS = MainScreen.Game_STATUS_MOVE_WAITING;
                     MainScreen.this.receriver.setFlag(MainScreen.Game_STATUS_SEND);
-                    sendmsg = "%$$^ : Tic-Tac-Toe : ACCEPTED : " + MainScreen.this.game.getPlayer(0).name;
+                    sendmsg = TicTacToe.appkey + " : Tic-Tac-Toe : ACCEPTED : " + MainScreen.this.game.getPlayer(0).name;
                     Intent intent = new Intent(((Dialog) dialog).getContext(), Game.class);
                     MainScreen.this.startActivity(intent);
                     break;
@@ -81,7 +76,7 @@ public class MainScreen extends AppCompatActivity {
                 MainScreen.Game_CURRENT_STATUS = MainScreen.Game_STATUS_SEND;
                 MainScreen.this.textGameStatus.setText("Wait for Game Request");
                 MainScreen.this.game.getPlayer(MainScreen.Game_STATUS_SEND).phonenumber = phnumber;
-                SmsManager.getDefault().sendTextMessage(phnumber, null, "%$$^ : GameName : Tic-Tac-Toe : INVITE : " + MainScreen.this.game.getPlayer(0).name.toString(), null, null);
+                SmsManager.getDefault().sendTextMessage(phnumber, null, TicTacToe.appkey + " : GameName : Tic-Tac-Toe : INVITE : " + MainScreen.this.game.getPlayer(0).name.toString(), null, null);
             }
         });
         this.btSetting.setOnClickListener(new View.OnClickListener() {

@@ -88,9 +88,7 @@
             android:layout_height="98.0dip"
             android:layout_column="0"
             android:layout_margin="5.0dip"
-            android:layout_row="0"
-            android:src="@android:drawable/ic_btn_speak_now"
-            android:tag="@android:drawable/ic_btn_speak_now" />
+            android:layout_row="0" />
 
         <ImageButton
             android:id="@+id/b2"
@@ -98,9 +96,7 @@
             android:layout_height="98.0dip"
             android:layout_column="1"
             android:layout_margin="5.0dip"
-            android:layout_row="0"
-            android:src="@android:drawable/ic_dialog_map"
-            android:tag="@android:drawable/ic_dialog_map" />
+            android:layout_row="0" />
 
         <ImageButton
             android:id="@+id/b3"
@@ -108,9 +104,7 @@
             android:layout_height="98.0dip"
             android:layout_column="2"
             android:layout_margin="5.0dip"
-            android:layout_row="0"
-            android:src="@android:drawable/ic_dialog_map"
-            android:tag="@android:drawable/ic_dialog_map" />
+            android:layout_row="0" />
 
         <ImageButton
             android:id="@+id/b4"
@@ -118,9 +112,7 @@
             android:layout_height="98.0dip"
             android:layout_column="0"
             android:layout_margin="5.0dip"
-            android:layout_row="1"
-            android:src="@android:drawable/ic_dialog_email"
-            android:tag="@android:drawable/ic_dialog_email" />
+            android:layout_row="1" />
 
         <ImageButton
             android:id="@+id/b5"
@@ -128,9 +120,7 @@
             android:layout_height="98.0dip"
             android:layout_column="1"
             android:layout_margin="5.0dip"
-            android:layout_row="1"
-            android:src="@android:drawable/ic_menu_mylocation"
-            android:tag="@android:drawable/ic_menu_mylocation" />
+            android:layout_row="1" />
 
         <ImageButton
             android:id="@+id/b6"
@@ -138,9 +128,7 @@
             android:layout_height="98.0dip"
             android:layout_column="2"
             android:layout_margin="5.0dip"
-            android:layout_row="1"
-            android:src="@android:drawable/presence_video_away"
-            android:tag="@android:drawable/presence_video_away" />
+            android:layout_row="1" />
     </GridLayout>
 
     <TextView

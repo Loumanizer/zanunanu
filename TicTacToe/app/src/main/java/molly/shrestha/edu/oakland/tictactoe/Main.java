@@ -16,18 +16,17 @@ public class Main extends AppCompatActivity {
     ImageButton[] b = new ImageButton[6];
     Button bSecondPlayer = null;
     EditText editText = null;
-    int[] imageResources = new int[]{17301668, 17301546, 17301676, 17301545, 17301575, 17301536};
+    int[] imageResources = new int[]{android.R.drawable.ic_btn_speak_now, android.R.drawable.ic_delete, android.R.drawable.ic_dialog_email, android.R.drawable.ic_lock_idle_lock, android.R.drawable.ic_lock_power_off, android.R.drawable.ic_menu_camera};
     ImageView imageView = null;
     Player player = null;
 
     class ImageButtonClickListener implements OnClickListener {
-        ImageButtonClickListener() {
-        }
+        ImageButtonClickListener() {}
 
         public void onClick(View v) {
             int resourceId = ((Integer) ((ImageButton) v).getTag()).intValue();
-            Main.this.player.symbol = resourceId;
-            Main.this.imageView.setImageResource(resourceId);
+            player.symbol = resourceId;
+            imageView.setImageResource(resourceId);
         }
     }
 

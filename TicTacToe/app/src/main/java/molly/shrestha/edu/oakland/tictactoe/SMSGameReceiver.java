@@ -31,7 +31,7 @@ public class SMSGameReceiver extends BroadcastReceiver {
                     String senderNum = currentMessage.getDisplayOriginatingAddress();
                     String message = currentMessage.getDisplayMessageBody();
                     Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
-                    if (message.split(" : ")[0].equals("%$$^")) {
+                    if (message.split(" : ")[0].equals(TicTacToe.appkey)) {
                         game.UpdateGameTable(message);
                     }
                 }

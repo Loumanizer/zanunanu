@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,7 +48,7 @@ public class Game extends AppCompatActivity {
             Game.this.enablecells(false);
             Game.this.game.getPlayer(Game.this.currentPlayer).MarkCell(b.index);
             Game.this.tablelocConvert.getXYvalue(b.index);
-            String msg = "%$$^ : Tic-Tac-Toe : SELECTED : " + tablelocConvert.toSting();
+            String msg = TicTacToe.appkey + " : Tic-Tac-Toe : SELECTED : " + tablelocConvert.toSting();
             Game_CURRENT_STATUS = Game_STATUS_MOVE_WAITING;
             CheckWiner();
             tvGameStatus.setText("Move Send");
@@ -146,7 +145,7 @@ public class Game extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        SmsManager.getDefault().sendTextMessage(this.game.getPlayer(Player2).phonenumber.toString(), null, "%$$^ : Tic-Tac-Toe : TERMINATED", null, null);
+        SmsManager.getDefault().sendTextMessage(this.game.getPlayer(Player2).phonenumber.toString(), null, TicTacToe.appkey + " : Tic-Tac-Toe : TERMINATED", null, null);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

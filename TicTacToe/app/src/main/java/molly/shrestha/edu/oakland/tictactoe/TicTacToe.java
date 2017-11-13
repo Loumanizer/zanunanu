@@ -3,15 +3,13 @@ package molly.shrestha.edu.oakland.tictactoe;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class TicTacToe extends AppCompatActivity {
-
+    public static final String appkey = "0978";
     Button btCont = null;
     TextView tv = null;
 
@@ -24,8 +22,6 @@ public class TicTacToe extends AppCompatActivity {
         btCont.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), Main.class);
-                //Intent i = new Intent(v.getContext(), Game.class);
-                //i.setFlags(131072);
                 v.getContext().startActivity(i);
             }
         });
