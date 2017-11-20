@@ -30,97 +30,105 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_margin="15dp"
             android:inputType="textPersonName"
             android:text=""
             tools:layout_editor_absoluteX="102dp"
             tools:layout_editor_absoluteY="16dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtIcon"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="30dp"
-        android:text="Choose Your Icon"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="93dp" />
+        android:orientation="horizontal">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="35dp"
+        <TextView
+            android:id="@+id/txtIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="80dp"
-            android:layout_weight="1">
+            android:layout_marginRight="15dp"
+            android:text="Choose Your Icon"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="43dp"
+            tools:layout_editor_absoluteY="93dp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <Button
-                    android:id="@+id/btnAndroid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/ic_launcher_round" />
-
-                <Button
-                    android:id="@+id/btnStar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/btn_star_big_on" />
-
-                <Button
-                    android:id="@+id/btnSponge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?android:attr/textSelectHandle" />
-
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow
+        <ImageView
+            android:id="@+id/imgContainer"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="25dp"
+            app:srcCompat="@android:drawable/ic_lock_lock" />
+    </LinearLayout>
+    <GridLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="254dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout2"
+        android:columnCount="6"
+        android:orientation="horizontal"
+        android:rowCount="3"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="0dp">
 
-            <LinearLayout
+        <ImageButton
+            android:id="@+id/btn1"
+            android:layout_width="114.0dip"
+            android:layout_height="98.0dip"
+            android:layout_column="0"
+            android:layout_margin="5.0dip"
+            android:layout_row="0"
+            app:srcCompat="@android:drawable/ic_lock_lock" />
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btn2"
+            android:layout_width="114.0dip"
+            android:layout_height="98.0dip"
+            android:layout_column="1"
+            android:layout_margin="5.0dip"
+            android:layout_row="0"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
 
-                <Button
-                    android:id="@+id/btnVideo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/presence_video_online" />
+        <ImageButton
+            android:id="@+id/btn3"
+            android:layout_width="114.0dip"
+            android:layout_height="98.0dip"
+            android:layout_column="2"
+            android:layout_margin="5.0dip"
+            android:layout_row="0"
+            app:srcCompat="@android:drawable/btn_star" />
 
-                <Button
-                    android:id="@+id/btnPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/sym_action_call" />
+        <ImageButton
+            android:id="@+id/btn4"
+            android:layout_width="114.0dip"
+            android:layout_height="98.0dip"
+            android:layout_column="0"
+            android:layout_margin="5.0dip"
+            android:layout_row="1"
+            app:srcCompat="@android:drawable/sym_action_call" />
 
-                <Button
-                    android:id="@+id/btnLock"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/ic_lock_lock" />
-            </LinearLayout>
-        </TableRow>
-    </TableLayout>
+        <ImageButton
+            android:id="@+id/btn5"
+            android:layout_width="114.0dip"
+            android:layout_height="98.0dip"
+            android:layout_column="1"
+            android:layout_margin="5.0dip"
+            android:layout_row="1"
+            app:srcCompat="@android:drawable/presence_video_busy" />
 
+        <ImageButton
+            android:id="@+id/btn6"
+            android:layout_width="114.0dip"
+            android:layout_height="98.0dip"
+            android:layout_column="2"
+            android:layout_margin="5.0dip"
+            android:layout_row="1"
+            app:srcCompat="@android:drawable/ic_notification_overlay" />
+    </GridLayout>
     <Button
         android:id="@+id/btnNext"
         android:layout_width="match_parent"

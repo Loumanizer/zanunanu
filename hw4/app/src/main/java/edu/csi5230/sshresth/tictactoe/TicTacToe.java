@@ -6,21 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class TicTacToe extends AppCompatActivity {
+    public static String gameId = "0%$$0";
+
     Button btnContinue = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tic_tac_toe);
 
-        btnContinue = findViewById(R.id.btnContinue);
+        btnContinue = (Button) findViewById(R.id.btnContinue);
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                //Intent i = new Intent(view.getContext(),SettingScreen.class);
-                Intent i = new Intent(view.getContext(),GameScreen.class);
-                view.getContext().startActivity(i);
+            public void onClick(View v) {
+                Intent i= new Intent(v.getContext(),SettingScreen.class);
+                startActivity(i);
             }
         });
     }

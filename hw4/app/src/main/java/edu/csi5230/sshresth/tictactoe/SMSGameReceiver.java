@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+/**
+ * Created by shova on 11/12/2017.
+ */
+
 public class SMSGameReceiver extends BroadcastReceiver {
     static IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
     int flag = 0;
@@ -31,7 +35,7 @@ public class SMSGameReceiver extends BroadcastReceiver {
                     String senderNum = currentMessage.getDisplayOriginatingAddress();
                     String message = currentMessage.getDisplayMessageBody();
                     Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
-                    if (message.split(" : ")[0].equals("0978")) {
+                    if (message.split(" : ")[0].toString().equals(TicTacToe.gameId)) {
                         game.UpdateGameTable(message);
                     }
                 }

@@ -8,36 +8,40 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+/**
+ * Created by shova on 11/12/2017.
+ */
+
 public class SMSReceiver extends BroadcastReceiver {
-    static IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
-    int flag = 0;
-    MainScreen mainScreen = null;
+   static IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+   int flag = 0;
+   MainScreen mainScreen = null;
 
-    SMSReceiver(MainScreen _main) {
-        this.mainScreen = _main;
-    }
+   SMSReceiver(MainScreen main){
+       this.mainScreen = main;
+   }
 
-    void setFlag(int _flag) {
-        this.flag = _flag;
-    }
-
+   void setFlag(int flag){
+       this.flag = flag;
+   }
+    @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
-        if (bundle != null) {
+        if(bundle != null) {
             try {
-                Object[] pdusObj = (Object[]) bundle.get("pdus");
-                for (Object obj : pdusObj) {
-                    SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) obj);
-                    String senderNum = currentMessage.getDisplayOriginatingAddress();
-                    String message = currentMessage.getDisplayMessageBody();
-                    Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
-                    if (message.split(" : ")[0].equals("0978")) {
-                        this.mainScreen.DisplaySmsMessage(senderNum, message);
+                Object[] pdusobj = (Object[]) bundle.get("pdus");
+                for (Object obj : pdusobj) {
+                    SmsMessage currentMsg = SmsMessage.createFromPdu((byte[]) obj);
+                    String senderNo = currentMsg.getDisplayOriginatingAddress();
+                    String msg = currentMsg.getDisplayMessageBody();
+                    Log.i("SmsReceiver","senderNo:" + senderNo + ";message:" + msg );
+                    if(msg.split(" : ")[0].toString().equals(TicTacToe.gameId)){
+                        this.mainScreen.DisplaySmsMessage(senderNo, msg);
                     }
-                }
-            } catch (Exception e) {
-                Log.e("SmsReceiver", "Exception smsReceiver" + e);
             }
+        } catch(Exception e){
+            Log.e("SmsReceiver", "Exception smsReceiver" + e);
+        }
         }
     }
 }

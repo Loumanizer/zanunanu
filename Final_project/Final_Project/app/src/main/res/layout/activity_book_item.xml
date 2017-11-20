@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlbookitem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/txtDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtBookName"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@+id/btnbookedit"
+        android:text="Due Date"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!--<Button
+        android:id="@+id/addBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/price"
+        android:layout_toLeftOf="@+id/edit"
+        android:layout_toRightOf="@+id/price"
+        android:layout_toStartOf="@+id/edit"
+        android:padding="2dp"
+        android:onClick="addItems"
+        android:text="Add"
+        android:textSize="12sp" />-->
+
+    <TextView
+        android:id="@+id/txtBookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/imgStdPic"
+        android:layout_toRightOf="@+id/imgStdPic"
+        android:text="Product Name"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnbookedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnBookRemove"
+        android:layout_alignBottom="@+id/btnBookRemove"
+        android:layout_marginStart="61dp"
+        android:layout_toEndOf="@+id/txtBookName"
+        android:onClick="RemoveBookfromList"
+        android:text="Edit"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnBookRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="16dp"
+        android:onClick="RemoveBookfromList"
+        android:text="Remove"
+        android:textSize="12sp" />
+
+</RelativeLayout>
