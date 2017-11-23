@@ -36,8 +36,12 @@ public class dbCheckoutHelper extends Model {
 
     @Override
     public String toString(){
-        return getId() + ":" + studentId + "," + bookId + "," + dueDate;
-    }
+        //String ret = getId() + ":" + studentId + "," + bookId + "," + dueDate;
+        String _stdname = dbStudentHelper.getStudentName(studentId);
+        String _bookname = dbBookHelper.getBookName(bookId);
+        //return  ret;
+        return "ID: " + getId() + ": STD Name: " + _stdname + ", Book name: " + _bookname + ",Due Date: " + dueDate;
+    };
 
     public static List<dbCheckoutHelper> getAllCheckout(){
         Select query = new Select();

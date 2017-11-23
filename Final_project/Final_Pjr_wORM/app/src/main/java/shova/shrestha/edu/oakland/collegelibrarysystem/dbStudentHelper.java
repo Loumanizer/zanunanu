@@ -14,6 +14,7 @@ import java.util.List;
 
 @Table(name = "studentTable")
 public class dbStudentHelper extends Model {
+    public static int studentflag = 0;
 
     @Column(name = "name")
     public String Name;
@@ -30,10 +31,23 @@ public class dbStudentHelper extends Model {
 
     @Override
     public String toString(){
-        return getId() + ": " + Name + ", " + PhoneNumber;
+        if (studentflag == 1) {
+            return getId() + ": " + Name + ", " + PhoneNumber;
+        }
+        else
+        {
+            return getId() + ": " + Name;
+        }
     }
 
     public static List<dbStudentHelper> getAllStudent(){
+        studentflag = 1;
+        Select query = new Select();
+        return query.from(dbStudentHelper.class).orderBy("name").execute();
+    }
+
+    public static List<dbStudentHelper> getAllStudentName(){
+        studentflag = 0;
         Select query = new Select();
         return query.from(dbStudentHelper.class).orderBy("name").execute();
     }

@@ -41,7 +41,7 @@ public class ClsCheckoutList extends AppCompatActivity {
         spinnerStudent = findViewById(R.id.spinnerStudent);
         spinnerBook = findViewById(R.id.spinnerBook);
 
-        students = dbStudentHelper.getAllStudent();
+        students = dbStudentHelper.getAllStudentName();
         studentSpinnerAdapter = new ArrayAdapter<dbStudentHelper>(this, android.R.layout.simple_list_item_1, students);
         spinnerStudent.setAdapter(studentSpinnerAdapter);
 
